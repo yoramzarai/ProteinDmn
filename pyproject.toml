@@ -1,7 +1,7 @@
 [project]
 name = "hprotein-domains"
 version = "0.1.0"
-description = "Retrieves Human protein domains."
+description = "Retrieves protein domains."
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
