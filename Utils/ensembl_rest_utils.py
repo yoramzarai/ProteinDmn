@@ -183,7 +183,7 @@ class REST_API():
 
     def is_protein_coding(self, trans_id: str) -> bool:
         """Returns True [False] if the transcript ID trans_id is [is not] a coding protein transcript."""
-        if not Ensb_transcript_ID_preamble in trans_id:
+        if Ensb_transcript_ID_preamble not in trans_id:
             print(f"Input ({trans_id}) must be a valid transcript ID (i.e. a {Ensb_transcript_ID_preamble} ID) !!")
             return False
         return self.lookup_id(trans_id)['biotype'] == 'protein_coding'
