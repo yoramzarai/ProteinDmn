@@ -1,0 +1,41 @@
+# Protein domains configuration file.
+
+[Framework]
+Name = "UniProt Protein Domains"
+Name_verbose = "Retrieve UniProt protein domains given Ensembl transcript ID."
+Version = "0.2"
+Author = "YZ"
+
+[Transcript]
+# File containing the transcript IDs. 
+# Accepted file formats:
+# 1. Text file - extension .txt
+# 2. CSV file - extension .csv. In this case, csv_file_transcript_col_name defines the column holding
+#               the transcripts IDs, and csv_sep defines the CSV file delimiter
+file = "./data/transcript_list.txt"  # either a .txt file or a .csv file
+#file = "./data/candidate_info.csv"
+csv_file_transcript_col_name = "trans_id"  # in case of a .csv file, the column name in the CSV file containing the transcript IDs.
+csv_sep = ','  # in case of a .csv file, holds the CSV file delimiter.
+
+[Assembly]
+version = "GRCh38"  # Set the Assembly to use (valid values are "GRCh38" or "GRCh37").
+
+[IDs]
+show_gene_id = true  # Set true [false] to enable [disable] reporting gene ID.
+show_gene_name = true  # Set true [false] to enable [disable] reporting gene name.
+show_protein_id = true  # Set true [false] to enable [disable] reporting protein ID.
+show_uniprot_id = true  # Set true [false] to enable [disable] reporting UniProt ID.
+show_uniprot_url = true  # Set true [false] to enable [disable] reporting UniProt URL.
+
+[Domains]
+uniprot_features = ["Topological domain", "Transmembrane", "Domain", "Repeat", "Region"]  # Set the list of features to retrieve. Set to [] to retrieve all features.
+
+[Output]
+file = "./output/transcript_domains_DE.xlsx"  # Set the output file (accepted formats are excel (i.e. .xlsx file) or CSV (i.e. .csv file)).
+format = "expanded"  # Set to "basic": all transcripts and domains are listed together (in one excel sheet if using excel file), where each row represents a domain.
+                # Set to "compact": all transcripts and domains are listed together (in one excel sheet if using excel file), where each row represents a transcript.
+                # (all domains are aggregated in one cell, domains are '|' separated, domain's fields are ',' separated.)
+                # Set to "expanded": each transcript (and its domains) are listed in a separate excel sheet. CSV output file not supported for this format.
+
+[Debug]
+enable = true  # Set to false [true] to disable [enable] debug prints.

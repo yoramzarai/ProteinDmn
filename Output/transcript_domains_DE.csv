@@ -1,0 +1,19 @@
+Transcript_ID,type,start,end,description
+ENST00000257910,Topological domain,1,12,Cytoplasmic
+ENST00000257910,Transmembrane,13,33,Helical
+ENST00000257910,Topological domain,34,44,Extracellular
+ENST00000257910,Transmembrane,45,65,Helical
+ENST00000257910,Topological domain,66,72,Cytoplasmic
+ENST00000257910,Transmembrane,73,93,Helical
+ENST00000257910,Topological domain,94,173,Extracellular
+ENST00000257910,Transmembrane,174,194,Helical
+ENST00000257910,Topological domain,195,210,Cytoplasmic
+ENST00000366578,Domain,38,142,Calponin-homology (CH) 1
+ENST00000366578,Domain,151,257,Calponin-homology (CH) 2
+ENST00000366578,Repeat,281,391,Spectrin 1
+ENST00000366578,Repeat,401,506,Spectrin 2
+ENST00000366578,Repeat,516,627,Spectrin 3
+ENST00000366578,Repeat,637,740,Spectrin 4
+ENST00000366578,Domain,753,788,EF-hand 1
+ENST00000366578,Domain,789,824,EF-hand 2
+ENST00000366578,Region,1,254,Actin-binding
