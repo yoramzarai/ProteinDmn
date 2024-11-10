@@ -29,8 +29,8 @@ def endpoint_base(typ: str, server: str,
         return {}
     try:
         return r.json()
-    except:
-    #except AttributeError,JSONDecodeError:
+    #except:
+    except (AttributeError,requests.exceptions.JSONDecodeError):
         return r.text
 
 # base get and post endpoints
