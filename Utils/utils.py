@@ -4,7 +4,7 @@ Utils for main.py.
 """
 import pathlib
 from dataclasses import dataclass
-from typing import Callable
+#from typing import Callable
 import pandas as pd
 import toml_utils as tmut
 import uniprot_utils as uput  # in my Utils/ folder
@@ -35,7 +35,10 @@ class Labels:
     Domains: str = 'Domains'
 
 # update Uniprot_url_template based on uniprot_id
-get_uniprot_url: Callable[[str], str] = lambda uniprot_id: f"https://www.uniprot.org/uniprotkb/{uniprot_id}/entry"
+#get_uniprot_url: Callable[[str], str] = lambda uniprot_id: f"https://www.uniprot.org/uniprotkb/{uniprot_id}/entry"
+def get_uniprot_url(uniprot_id: str) -> str:
+    """Returns the UniProt URL of a UniProt ID."""
+    return f"https://www.uniprot.org/uniprotkb/{uniprot_id}/entry"
 
 def check_configuration(cnfg_data: dict) -> None:
     """Check configuration validity."""
