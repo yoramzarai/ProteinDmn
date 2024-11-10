@@ -1,5 +1,5 @@
 [project]
-name = "hprotein-domains"
+name = "ProteinDmn"
 version = "0.1.0"
 description = "Retrieves protein domains."
 readme = "README.md"
