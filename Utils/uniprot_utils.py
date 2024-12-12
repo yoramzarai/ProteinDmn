@@ -6,7 +6,7 @@ from functools import partial
 from typing import Callable
 import pandas as pd
 
-import rest_api_utils as rsut
+import Utils.rest_api_utils as rsut
 
 
 Uniprot_base_URL: str = "https://rest.uniprot.org/uniprotkb"

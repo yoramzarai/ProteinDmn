@@ -25,7 +25,7 @@ Updated on 12/20/23 - using rest_api_utils.py
 from functools import partial, partialmethod
 from requests.exceptions import HTTPError
 
-import rest_api_utils as rsut
+import Utils.rest_api_utils as rsut
 
 # supported assemblies
 Ensembl_URLs: dict[str, str] = {

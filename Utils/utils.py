@@ -6,9 +6,9 @@ import pathlib
 from dataclasses import dataclass
 #from typing import Callable
 import pandas as pd
-import toml_utils as tmut
-import uniprot_utils as uput  # in my Utils/ folder
-import ensembl_rest_utils as erut  # in my Utils/ folder
+import Utils.toml_utils as tmut
+import Utils.uniprot_utils as uput  # in my Utils/ folder
+import Utils.ensembl_rest_utils as erut  # in my Utils/ folder
 
 
 # configuration Toml file
