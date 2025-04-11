@@ -4,17 +4,18 @@ Utils for main.py.
 """
 import pathlib
 from dataclasses import dataclass
+
 #from typing import Callable
 import pandas as pd
+
+import Utils.ensembl_rest_utils as erut  # in my Utils/ folder
 import Utils.toml_utils as tmut
 import Utils.uniprot_utils as uput  # in my Utils/ folder
-import Utils.ensembl_rest_utils as erut  # in my Utils/ folder
-
 
 # configuration Toml file
 Cnfg_Toml_file: pathlib.Path = pathlib.Path('./config/config.toml')
 
-class Configuration_Error(Exception):
+class ConfigurationError(Exception):
     """Invalid configuration exception."""
     def __init__(self, message: str):
         self.message: str = message
@@ -49,9 +50,9 @@ def check_configuration(cnfg_data: dict) -> None:
     if not isinstance(cnfg_data['Domains']['uniprot_features'], list):
         raise TypeError(f"Domain:features in {Cnfg_Toml_file} must contain a list of UniProt domains !!")
     if (pathlib.Path(cnfg_data['Output']['file']).suffix == '.csv') and (cnfg_data['Output']['format'] == 'expanded'):
-        raise Configuration_Error("CSV output file not supported for 'expanded' output format !!")
+        raise ConfigurationError("CSV output file not supported for 'expanded' output format !!")
     if pathlib.Path(cnfg_data['Output']['file']).suffix not in ['.xlsx', '.xls', '.csv']:
-        raise Configuration_Error(f"Output file {cnfg_data['Output']['file']} not supported (only excel and CSV are supported) !!")
+        raise ConfigurationError(f"Output file {cnfg_data['Output']['file']} not supported (only excel and CSV are supported) !!")
 
 
 def load_config() -> dict:
@@ -220,17 +221,17 @@ def generate_output_table(cnfg_data: dict, transcripts_domains: dict[str,dict]) 
     match cnfg_data['Output']['format']:
         case 'basic':
             dfs = [_gen_basic_domain_dataframe(cnfg_data, transcripts_domains)]
-            transcript_IDs = [Labels.Domains]  # when all transcripts are in the same sheet, we simply call the sheet Labels.Domains]
+            transcript_ids = [Labels.Domains]  # when all transcripts are in the same sheet, we simply call the sheet Labels.Domains]
         case 'compact':
             dfs = [_gen_compact_domain_dataframe(cnfg_data, transcripts_domains)]
-            transcript_IDs = [Labels.Domains]  # when all transcripts are in the same sheet, we simply call the sheet Labels.Domains]
+            transcript_ids = [Labels.Domains]  # when all transcripts are in the same sheet, we simply call the sheet Labels.Domains]
         case 'expanded':
             df = _gen_basic_domain_dataframe(cnfg_data, transcripts_domains)
-            transcript_IDs, dfs = zip(*list(df.groupby(by=Labels.Transcript_ID)))  # sheet name is the transcript ID
+            transcript_ids, dfs = zip(*list(df.groupby(by=Labels.Transcript_ID)))  # sheet name is the transcript ID
             dfs = [dfx.drop(columns=[Labels.Transcript_ID]) for dfx in dfs]  # remove transcript ID columns, since it is the sheet name
         case _:
             raise ValueError(f"Output format {cnfg_data['Output']['format']} is no supported. Please check configuration file, under ['Output']['format'] !!")
-    return dfs, transcript_IDs
+    return dfs, transcript_ids
 
 def generate_output_file(cnfg_data: dict, transcripts_domains: dict[str,dict]) -> None:
     """Generates the ouput file containing the IDs and domains"""
@@ -241,4 +242,4 @@ def generate_output_file(cnfg_data: dict, transcripts_domains: dict[str,dict]) -
         case '.xlsx' | '.xls':
             dfs_to_excel_file(dfs, cnfg_data['Output']['file'], sheet_names=sheet_names, add_index=False, extra_width=2)
         case _:
-            raise Configuration_Error(f"Output file {cnfg_data['Output']['file']} not supported (only excel and CSV are supported) !!")
+            raise ConfigurationError(f"Output file {cnfg_data['Output']['file']} not supported (only excel and CSV are supported) !!")

@@ -4,6 +4,7 @@ Main script.
 """
 import Utils.utils as u
 
+
 def main() -> None:
     """main function."""
     # load configuration
@@ -30,13 +31,13 @@ def main() -> None:
 
     # generate output table (only in debug mode)
     if debug:
-        dfs, transcript_IDs = u.generate_output_table(cnfg_data, transcripts_domains)
+        dfs, transcript_ids = u.generate_output_table(cnfg_data, transcripts_domains)
         if len(dfs) == 1:
             print("Aggregate domains table:")
             print(dfs[0].to_string())
         else:
-            for df, transcript_ID in zip(dfs, transcript_IDs):
-                print(f"Domains table for {transcript_ID}:")
+            for df, transcript_id in zip(dfs, transcript_ids):
+                print(f"Domains table for {transcript_id}:")
                 print(df.to_string())
 
     # write to output file

@@ -10,3 +10,19 @@ dependencies = [
     "toml>=0.10.2",
     "xlsxwriter>=3.2.0",
 ]
+
+[dependency-groups]
+dev = [
+    "ruff>=0.11.5",
+]
+
+[tool.ruff]
+# Set the maximum line length to 79.
+line-length = 110
+
+[tool.ruff.lint]
+# Add the `line-too-long` rule to the enforced rule set. By default, Ruff omits rules that
+# overlap with the use of a formatter, like Black, but we can override this behavior by
+# explicitly adding the rule.
+extend-select = ["E501", "N", "R", "I"]
+ignore = []
