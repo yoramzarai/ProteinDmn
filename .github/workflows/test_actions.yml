@@ -39,5 +39,8 @@ jobs:
       - name: Install uv
         run: pip install uv
 
+      - name: Add project root to Python path
+        run: echo "PYTHONPATH=$(pwd):$PYTHONPATH" >> $GITHUB_ENV
+
       - name: Run Tests with uv
         run: uv run pytest
